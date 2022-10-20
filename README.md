@@ -4,3 +4,4 @@
 Creado por:
 1. Josué David Avelar Ponce
 2. Katherine Dayanna Díaz Zúniga
+3. Josué Alexander Chávez García
