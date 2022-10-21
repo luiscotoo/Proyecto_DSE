@@ -6,3 +6,4 @@ Creado por:
 2. Katherine Dayanna Díaz Zúniga
 3. Josué Alexander Chávez García
 4. Luis Felipe Coto Arias 
+5. Bryan Armando Salinas Sanchez
