@@ -167,8 +167,8 @@ D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\bin\es\System.Web.Razor.resources.dll
 D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\bin\es\System.Web.WebPages.resources.dll
 D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\bin\es\System.Web.WebPages.Razor.resources.dll
-D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\obj\Debug\VentasWeb.csproj.AssemblyReference.cache
 D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\obj\Debug\VentasWeb.csproj.CoreCompileInputs.cache
 D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\obj\Debug\VentasWeb.csproj.CopyComplete
 D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\obj\Debug\VentasWeb.dll
 D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\obj\Debug\VentasWeb.pdb
+D:\Github\Proyecto_DSE\VentasWeb\VentasWeb\obj\Debug\VentasWeb.csprojAssemblyReference.cache

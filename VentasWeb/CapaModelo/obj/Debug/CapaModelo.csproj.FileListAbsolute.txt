@@ -6,7 +6,7 @@ D:\WorkSpaceAD\YOUTUBE\022_FUNCIONALIDAD SISTEMA DE VENTA MVC\VentasWeb\CapaMode
 D:\WorkSpaceAD\YOUTUBE\022_FUNCIONALIDAD SISTEMA DE VENTA MVC\VentasWeb\CapaModelo\obj\Debug\CapaModelo.csprojAssemblyReference.cache
 D:\Github\Proyecto_DSE\VentasWeb\CapaModelo\bin\Debug\CapaModelo.dll
 D:\Github\Proyecto_DSE\VentasWeb\CapaModelo\bin\Debug\CapaModelo.pdb
-D:\Github\Proyecto_DSE\VentasWeb\CapaModelo\obj\Debug\CapaModelo.csproj.AssemblyReference.cache
 D:\Github\Proyecto_DSE\VentasWeb\CapaModelo\obj\Debug\CapaModelo.csproj.CoreCompileInputs.cache
 D:\Github\Proyecto_DSE\VentasWeb\CapaModelo\obj\Debug\CapaModelo.dll
 D:\Github\Proyecto_DSE\VentasWeb\CapaModelo\obj\Debug\CapaModelo.pdb
+D:\Github\Proyecto_DSE\VentasWeb\CapaModelo\obj\Debug\CapaModelo.csprojAssemblyReference.cache
