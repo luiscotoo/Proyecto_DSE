@@ -1,16 +1,9 @@
 # Farmacia Varlette :adhesive_bandage: :stethoscope:
-Descripcion
-
-## Para comenzar :rocket:
-* [Manual de Usuario :boy:]()
-* [Manual Técnico :construction_worker:]()
-* [Documento - Primera Fase :notebook:]()
-
-
-## Requisitos :rotating_light:
-```
-Cualquier dispositivo con acceso a internet
-```
+Dentro de este proyecto se observará el desarrollo e implementación de un
+sistema de control de inventarios para la empresa clínicas y laboratorios
+VARLETTE ya que el área de la salud va creciendo con rapidez y con el uso de
+la tecnología se agilizan los procesos para el control y manejo de los activos de
+la organización.
 
 ## Desarrolladores :pencil2:
 * **Luis Felipe Coto Arias** - :octocat: [luiscotoo](https://github.com/luiscotoo)
@@ -20,7 +13,6 @@ Cualquier dispositivo con acceso a internet
 * **Josue Alexander Chavez Garcia** - :octocat: [Jalex-Cg](https://github.com/Jalex-Cg)
 
 ## Herramientas utilizadas :wrench::hammer:
-* [Visual Studio Code](https://code.visualstudio.com/) - Editor de código gratuito desarrollado por Microsoft.
-
-## Enlaces de interés :zap:
-* Trello: [Tablero]() :white_check_mark:
+* [Visual Studio](https://visualstudio.microsoft.com/es/) -  Entorno de desarrollo integrado para Windows y macOS.
+* [SQL Server](https://learn.microsoft.com/es-es/sql/relational-databases/databases/databases?view=sql-server-ver16) -  Sistema de gestión de base de datos relacional.
+* [GitHub](https://github.com) -  Forja para alojar proyectos utilizando el sistema de control de versiones Git
