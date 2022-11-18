@@ -74,7 +74,7 @@ namespace CapaDatos
                 try
                 {
                     SqlCommand cmd = new SqlCommand("usp_ActualizarPermisos", oConexion);
-                    cmd.Parameters.Add("Detalle", SqlDbType.Xml).Value = Detalle;
+                    cmd.Parameters.Add("Detalles", SqlDbType.Xml).Value = Detalle;
                     cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
