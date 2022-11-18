@@ -30,6 +30,40 @@ namespace CapaDatos
             }
         }
 
+        public bool RegistrarCliente(Cliente oCliente)
+        {
+            bool respuesta = true;
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_RegistrarCliente", oConexion);
+                    cmd.Parameters.AddWithValue("TipoDocumento", oCliente.TipoDocumento);
+                    cmd.Parameters.AddWithValue("NumeroDocumento", oCliente.NumeroDocumento);
+                    cmd.Parameters.AddWithValue("Nombre", oCliente.Nombre);
+                    cmd.Parameters.AddWithValue("Direccion", oCliente.Direccion);
+                    cmd.Parameters.AddWithValue("Telefono", oCliente.Telefono);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = false;
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
 
         public List<Cliente> ObtenerClientes()
         {
@@ -69,41 +103,6 @@ namespace CapaDatos
                     return rptListaCliente;
                 }
             }
-        }
-
-
-        public bool RegistrarCliente(Cliente oCliente)
-        {
-            bool respuesta = true;
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("usp_RegistrarCliente", oConexion);
-                    cmd.Parameters.AddWithValue("TipoDocumento", oCliente.TipoDocumento);
-                    cmd.Parameters.AddWithValue("NumeroDocumento", oCliente.NumeroDocumento);
-                    cmd.Parameters.AddWithValue("Nombre", oCliente.Nombre);
-                    cmd.Parameters.AddWithValue("Direccion", oCliente.Direccion);
-                    cmd.Parameters.AddWithValue("Telefono", oCliente.Telefono);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    oConexion.Open();
-
-                    cmd.ExecuteNonQuery();
-
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = false;
-                }
-
-            }
-
-            return respuesta;
-
         }
 
         public bool ModificarCliente(Cliente oCliente)
