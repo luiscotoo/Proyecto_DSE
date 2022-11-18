@@ -42,7 +42,7 @@ namespace CapaDatos
                 {
                     SqlCommand cmd = new SqlCommand("usp_LoginUsuario", oConexion);
                     cmd.Parameters.AddWithValue("Correo", Usuario);
-                    cmd.Parameters.AddWithValue("Clave", Clave);
+                    cmd.Parameters.AddWithValue("Contraseña", Clave);
                     cmd.Parameters.Add("IdUsuario", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -163,7 +163,7 @@ namespace CapaDatos
                             Nombres = dr["Nombres"].ToString(),
                             Apellidos = dr["Apellidos"].ToString(),
                             Correo = dr["Correo"].ToString(),
-                            Clave = dr["Clave"].ToString(),
+                            Clave = dr["Contraseña"].ToString(),
                             IdTienda = Convert.ToInt32(dr["IdTienda"].ToString()),
                             IdRol = Convert.ToInt32(dr["IdRol"].ToString()),
                             oRol = new Rol() { Descripcion = dr["DescripcionRol"].ToString() },
