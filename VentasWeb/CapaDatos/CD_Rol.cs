@@ -25,6 +25,7 @@ namespace CapaDatos
                 if (_instancia == null)
                 {
                     _instancia = new CD_Rol();
+
                 }
                 return _instancia;
             }
@@ -33,9 +34,11 @@ namespace CapaDatos
         public List<Rol> ObtenerRol()
         {
             List<Rol> rptListaRol = new List<Rol>();
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand("usp_ObtenerRoles", oConexion);
+
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 try
@@ -60,7 +63,9 @@ namespace CapaDatos
                 catch (Exception ex)
                 {
                     rptListaRol = null;
+
                     return rptListaRol;
+
                 }
             }
         }
@@ -90,6 +95,36 @@ namespace CapaDatos
                 }
             }
             return respuesta;
+        }
+
+        public bool EliminarRol(int IdRol)
+        {
+            bool respuesta = true;
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_EliminarRol", oConexion);
+                    cmd.Parameters.AddWithValue("IdRol", IdRol);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = false;
+                }
+
+            }
+
+            return respuesta;
+
         }
 
         public bool ModificarRol(Rol oRol)
@@ -125,35 +160,6 @@ namespace CapaDatos
 
         }
 
-        public bool EliminarRol(int IdRol)
-        {
-            bool respuesta = true;
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("usp_EliminarRol", oConexion);
-                    cmd.Parameters.AddWithValue("IdRol", IdRol);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    oConexion.Open();
-
-                    cmd.ExecuteNonQuery();
-
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = false;
-                }
-
-            }
-
-            return respuesta;
-
-        }
 
     }
 }
