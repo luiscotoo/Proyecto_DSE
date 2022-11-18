@@ -30,9 +30,42 @@ namespace CapaDatos
             }
         }
 
+        public bool RegistrarProveedor(Proveedor oProveedor)
+        {
+            bool respuesta = true;
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_RegistrarProveedor", oConexion);
+                    cmd.Parameters.AddWithValue("Ruc", oProveedor.Ruc);
+                    cmd.Parameters.AddWithValue("RazonSocial", oProveedor.RazonSocial);
+                    cmd.Parameters.AddWithValue("Telefono", oProveedor.Telefono);
+                    cmd.Parameters.AddWithValue("Correo", oProveedor.Correo);
+                    cmd.Parameters.AddWithValue("Direccion", oProveedor.Direccion);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = false;
+                }
+            }
+            return respuesta;
+        }
+
         public List<Proveedor> ObtenerProveedor()
         {
             List<Proveedor> rptListaProveedor = new List<Proveedor>();
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand("usp_ObtenerProveedores", oConexion);
@@ -69,42 +102,11 @@ namespace CapaDatos
                 }
             }
         }
-
-        public bool RegistrarProveedor(Proveedor oProveedor)
-        {
-            bool respuesta = true;
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("usp_RegistrarProveedor", oConexion);
-                    cmd.Parameters.AddWithValue("Ruc", oProveedor.Ruc);
-                    cmd.Parameters.AddWithValue("RazonSocial", oProveedor.RazonSocial);
-                    cmd.Parameters.AddWithValue("Telefono", oProveedor.Telefono);
-                    cmd.Parameters.AddWithValue("Correo", oProveedor.Correo);
-                    cmd.Parameters.AddWithValue("Direccion", oProveedor.Direccion);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    oConexion.Open();
-
-                    cmd.ExecuteNonQuery();
-
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = false;
-                }
-            }
-            return respuesta;
-        }
-
-
+              
         public bool ModificarProveedor(Proveedor oProveedor)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
@@ -141,6 +143,7 @@ namespace CapaDatos
         public bool EliminarProveedor(int IdProveedor)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
