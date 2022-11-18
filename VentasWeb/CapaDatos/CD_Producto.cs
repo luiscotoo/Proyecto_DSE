@@ -30,9 +30,40 @@ namespace CapaDatos
             }
         }
 
+        public bool RegistrarProducto(Producto oProducto)
+        {
+            bool respuesta = true;
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_RegistrarProducto", oConexion);
+                    cmd.Parameters.AddWithValue("Nombre", oProducto.Nombre);
+                    cmd.Parameters.AddWithValue("Descripcion", oProducto.Descripcion);
+                    cmd.Parameters.AddWithValue("IdCategoria", oProducto.IdCategoria);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = false;
+                }
+            }
+            return respuesta;
+        }
+
         public List<Producto> ObtenerProducto()
         {
             List<Producto> rptListaProducto = new List<Producto>();
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand("usp_ObtenerProductos", oConexion);
@@ -70,38 +101,11 @@ namespace CapaDatos
             }
         }
 
-        public bool RegistrarProducto(Producto oProducto)
-        {
-            bool respuesta = true;
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("usp_RegistrarProducto", oConexion);
-                    cmd.Parameters.AddWithValue("Nombre", oProducto.Nombre);
-                    cmd.Parameters.AddWithValue("Descripcion", oProducto.Descripcion);
-                    cmd.Parameters.AddWithValue("IdCategoria", oProducto.IdCategoria);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    oConexion.Open();
-
-                    cmd.ExecuteNonQuery();
-
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = false;
-                }
-            }
-            return respuesta;
-        }
 
         public bool ModificarProducto(Producto oProducto)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
@@ -137,6 +141,7 @@ namespace CapaDatos
         public bool EliminarProducto(int IdProducto)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
