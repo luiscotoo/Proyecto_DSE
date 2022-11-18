@@ -1,9 +1,9 @@
 # Farmacia Varlette :adhesive_bandage: :stethoscope:
 Dentro de este proyecto se observará el desarrollo e implementación de un
 sistema de control de inventarios para la empresa clínicas y laboratorios
-VARLETTE, ya que el área de la salud va creciendo con rapidez y con el uso de
-la tecnología se agilizan los procesos para el control y manejo de los activos de
-la organización.
+VARLETTE, el cual ayudará a administrar los medicamentos, tiendas, stocks y 
+demás elementos clave en el funcionamiento de la empresa; teniendo como 
+valor agregado una sección de compras y ventas.
 
 ## Desarrolladores :pencil2:
 * **Luis Felipe Coto Arias** - :octocat: [luiscotoo](https://github.com/luiscotoo)
