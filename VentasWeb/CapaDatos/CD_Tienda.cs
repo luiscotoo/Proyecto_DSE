@@ -30,9 +30,45 @@ namespace CapaDatos
             }
         }
 
+        public bool RegistrarTienda(Tienda oTienda)
+        {
+            bool respuesta = true;
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_RegistrarTienda", oConexion);
+                    cmd.Parameters.AddWithValue("Nombre", oTienda.Nombre);
+                    cmd.Parameters.AddWithValue("Ruc", oTienda.RUC);
+                    cmd.Parameters.AddWithValue("Direccion", oTienda.Direccion);
+                    cmd.Parameters.AddWithValue("Telefono", oTienda.Telefono);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = false;
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
         public List<Tienda> ObtenerTiendas()
         {
             List<Tienda> rptListaUsuario = new List<Tienda>();
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand("usp_ObtenerTienda", oConexion);
@@ -68,45 +104,11 @@ namespace CapaDatos
                 }
             }
         }
-
-        public bool RegistrarTienda(Tienda oTienda)
-        {
-            bool respuesta = true;
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("usp_RegistrarTienda", oConexion);
-                    cmd.Parameters.AddWithValue("Nombre", oTienda.Nombre);
-                    cmd.Parameters.AddWithValue("Ruc", oTienda.RUC);
-                    cmd.Parameters.AddWithValue("Direccion", oTienda.Direccion);
-                    cmd.Parameters.AddWithValue("Telefono", oTienda.Telefono);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    oConexion.Open();
-
-                    cmd.ExecuteNonQuery();
-
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = false;
-                }
-
-            }
-
-            return respuesta;
-
-        }
-
-
+        
         public bool ModificarTienda(Tienda oTienda)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
@@ -143,6 +145,7 @@ namespace CapaDatos
         public bool EliminarTienda(int IdTienda)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try

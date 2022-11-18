@@ -36,6 +36,7 @@ namespace CapaDatos
         public int LoginUsuario(string Usuario, string Clave)
         {
             int respuesta = 0;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
@@ -64,6 +65,7 @@ namespace CapaDatos
         public Usuario ObtenerDetalleUsuario(int IdUsuario)
         {
             Usuario rptUsuario = new Usuario();
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand("usp_ObtenerDetalleUsuario", oConexion);
@@ -142,9 +144,46 @@ namespace CapaDatos
             }
         }
 
+        public bool RegistrarUsuario(Usuario oUsuario)
+        {
+            bool respuesta = true;
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("usp_RegistrarUsuario", oConexion);
+                    cmd.Parameters.AddWithValue("Nombres", oUsuario.Nombres);
+                    cmd.Parameters.AddWithValue("Apellidos", oUsuario.Apellidos);
+                    cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
+                    cmd.Parameters.AddWithValue("Contraseña", oUsuario.Clave);
+                    cmd.Parameters.AddWithValue("IdTienda", oUsuario.IdTienda);
+                    cmd.Parameters.AddWithValue("IdRol", oUsuario.IdRol);
+                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oConexion.Open();
+
+                    cmd.ExecuteNonQuery();
+
+                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+
+                }
+                catch (Exception ex)
+                {
+                    respuesta = false;
+                }
+
+            }
+
+            return respuesta;
+
+        }
+
         public List<Usuario> ObtenerUsuarios()
         {
             List<Usuario> rptListaUsuario = new List<Usuario>();
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 SqlCommand cmd = new SqlCommand("usp_ObtenerUsuario", oConexion);
@@ -184,45 +223,10 @@ namespace CapaDatos
             }
         }
 
-
-        public bool RegistrarUsuario(Usuario oUsuario)
-        {
-            bool respuesta = true;
-            using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
-            {
-                try
-                {
-                    SqlCommand cmd = new SqlCommand("usp_RegistrarUsuario", oConexion);
-                    cmd.Parameters.AddWithValue("Nombres", oUsuario.Nombres);
-                    cmd.Parameters.AddWithValue("Apellidos", oUsuario.Apellidos);
-                    cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
-                    cmd.Parameters.AddWithValue("Contraseña", oUsuario.Clave);
-                    cmd.Parameters.AddWithValue("IdTienda", oUsuario.IdTienda);
-                    cmd.Parameters.AddWithValue("IdRol", oUsuario.IdRol);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    oConexion.Open();
-
-                    cmd.ExecuteNonQuery();
-
-                    respuesta = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-
-                }
-                catch (Exception ex)
-                {
-                    respuesta = false;
-                }
-
-            }
-
-            return respuesta;
-
-        }
-
         public bool ModificarUsuario(Usuario oUsuario)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
@@ -259,6 +263,7 @@ namespace CapaDatos
         public bool EliminarUsuario(int IdUsuario)
         {
             bool respuesta = true;
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.CN))
             {
                 try
