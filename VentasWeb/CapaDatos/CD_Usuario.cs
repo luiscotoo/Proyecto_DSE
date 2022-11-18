@@ -87,7 +87,7 @@ namespace CapaDatos
                                                   Nombres = dato.Element("Nombres").Value,
                                                   Apellidos = dato.Element("Apellidos").Value,
                                                   Correo = dato.Element("Correo").Value,
-                                                  Clave = dato.Element("Clave").Value,
+                                                  Clave = dato.Element("Contraseña").Value,
 
                                               }).FirstOrDefault();
                                 rptUsuario.oTienda = (from dato in doc.Element("Usuario").Elements("DetalleTienda")
@@ -196,7 +196,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Nombres", oUsuario.Nombres);
                     cmd.Parameters.AddWithValue("Apellidos", oUsuario.Apellidos);
                     cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
-                    cmd.Parameters.AddWithValue("Clave", oUsuario.Clave);
+                    cmd.Parameters.AddWithValue("Contraseña", oUsuario.Clave);
                     cmd.Parameters.AddWithValue("IdTienda", oUsuario.IdTienda);
                     cmd.Parameters.AddWithValue("IdRol", oUsuario.IdRol);
                     cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
@@ -232,7 +232,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Nombres", oUsuario.Nombres);
                     cmd.Parameters.AddWithValue("Apellidos", oUsuario.Apellidos);
                     cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
-                    cmd.Parameters.AddWithValue("Clave", oUsuario.Clave);
+                    cmd.Parameters.AddWithValue("Contraseña", oUsuario.Clave);
                     cmd.Parameters.AddWithValue("IdTienda", oUsuario.IdTienda);
                     cmd.Parameters.AddWithValue("IdRol", oUsuario.IdRol);
                     cmd.Parameters.AddWithValue("Activo", oUsuario.Activo);
