@@ -53,7 +53,7 @@ namespace CapaDatos
                         while (dr.Read()) {
                             lista.Add(new ReporteProducto()
                             {
-                                RucTienda = dr["Ruc Tienda"].ToString(),
+                                RucTienda = dr["RUC"].ToString(),
                                 NombreTienda = dr["Nombre Tienda"].ToString(),
                                 DireccionTienda = dr["Direccion Tienda"].ToString(),
                                 CodigoProducto = dr["Codigo Producto"].ToString(),
@@ -106,7 +106,7 @@ namespace CapaDatos
                                 NumeroDocumento = dr["Numero Documento"].ToString(),
                                 TipoDocumento = dr["Tipo Documento"].ToString(),
                                 NombreTienda = dr["Nombre Tienda"].ToString(),
-                                RucTienda = dr["Ruc Tienda"].ToString(),
+                                RucTienda = dr["RUC"].ToString(),
                                 NombreEmpleado = dr["Nombre Empleado"].ToString(),
                                 CantidadUnidadesVendidas = dr["Cantidad Unidades Vendidas"].ToString(),
                                 CantidadProductos = dr["Cantidad Productos"].ToString(),
